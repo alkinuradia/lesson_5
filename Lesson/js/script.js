@@ -1,5 +1,23 @@
 //замикання
 
+// function createNewSum(n) {
+//     return function() {
+//         console.log(10 * n);
+//     };
+// }
+// const calc = createNewSum(6);
+// calc(); // 60
+
+// function createNewNumber(n) {
+//     return function(num) {
+//         return n + num;
+//     };
+// }
+// const addFive = createNewNumber(5);
+// console.log(addFive(10)); //15. бо першим аргуметом ми передали 5(n), а другим у консолі 10
+// console.log(addFive(20)); // 25. бо першим аргуметом ми передали 5(n), а другим у консолі 20
+
+
 // function createUrl(domain) {
 //   return function (url) {
 //     return `https://${url}.${domain}`;
@@ -167,35 +185,35 @@
 
 ////////
 
-// const cart = {
-//   showItems() {
-//     console.log("В корзині: ", this.items);
-//   },
-// };
+const cart = {
+  showItems() {
+    console.log("В корзині: ", this.items);
+  },
+};
 
-// const woman = {
-//   items: ["Сукня, туфлі"],
-// };
+const woman = {
+  items: ["Сукня, туфлі"],
+};
 
-// const man = {
-//   items: ["Костюм, рубашка"],
-// };
+const man = {
+  items: ["Костюм, рубашка"],
+};
 
-// const child = {
-//   items: ["майка, шорти"],
-// };
+const child = {
+  items: ["майка, шорти"],
+};
 
-// document
-//   .querySelector("#wom")
-//   .addEventListener("click", cart.showItems.bind(woman));
+document
+  .querySelector("#wom")
+  .addEventListener("click", cart.showItems.bind(woman));
 
-// document
-//   .querySelector("#man")
-//   .addEventListener("click", cart.showItems.bind(man));
+document
+  .querySelector("#man")
+  .addEventListener("click", cart.showItems.bind(man));
 
-// document
-//   .querySelector("#kid")
-//   .addEventListener("click", cart.showItems.bind(child));
+document
+  .querySelector("#kid")
+  .addEventListener("click", cart.showItems.bind(child));
 // ////
 
 // const infoCar = {
@@ -218,3 +236,91 @@
 // infoCar.showInfo.bind(car2)();
 // infoCar.showInfo.call(car2);
 // infoCar.showInfo.apply(car2);
+
+
+
+// Петя біжить швидко, тому що Петя намагається зловити поїзд.
+// const petya = {
+//   username: "Petya",
+//   showName() {
+//     console.log(petya.username);
+//   },
+// };
+
+// petya.showName();
+////////////////////////////////////////
+
+// const bookShelf = {
+//     authors: ["Бернард Корнуелл", "Роберт Шеклі"],
+//     getAuthors() {
+//       return this.authors;
+//     },
+//     addAuthor(authorName) {
+//       this.authors.push(authorName);
+//     },
+//   };
+  
+//   console.log(bookShelf.getAuthors()); // ["Бернард Корнуелл", "Роберт Шеклі"]
+//   bookShelf.addAuthor("Лі Таніт");
+//   console.log(bookShelf.getAuthors()); // ["Бернард Корнуелл", "Роберт Шеклі", "Лі Таніт"]
+  
+//Методи getAuthors і addAuthor - це функції (методи об'єкта), які викликаються в контексті об'єкта bookShelf. 
+//Під час їх виконання в this записується посилання на об'єкт bookShelf і ми можемо звернутися до його властивостей і методів.
+
+// function foo() {
+//     console.log(this);
+// }
+  
+// foo(); // this у глобальній області видимості
+
+//   //this в методі об'єкта
+// const petya = {
+//     username: "Petya",
+//     showThis() {
+//       console.log(this);
+//     },
+//     showName() {
+//       console.log(this.username);
+//     },
+//   };
+  
+// petya.showThis(); // {username: "Petya", showThis: ƒ, showName: ƒ}
+// petya.showName(); // 'Petya'
+  
+// //Метод call()​
+
+// function greetGuest(greeting) {
+//     console.log(`${greeting}, ${this.username}.`);
+//   }
+  
+//   const mango = {
+//     username: "Манго",
+//   };
+//   const poly = {
+//     username: "Полі",
+//   };
+  
+//   greetGuest.apply(mango, ["Ласкаво просимо"]); // Ласкаво просимо, Манго.
+//   greetGuest.call(poly, "З прибуттям"); // З прибуттям, Полі.
+  
+//Метод bind()​
+// Методи call і apply викликають функцію «на місці», тобто відразу.
+// Але у разі колбек-функцій, коли необхідно не відразу викликати функцію, а передати посилання на неї, причому з прив'язаним контекстом, використовується метод bind.
+// Метод bind створює і повертає копію функції foo з прив'язаним контекстом obj і аргументами arg1, arg2 тощо. Утворюється копія функції, яку можна передати куди завгодно і викликати коли завгодно.
+
+// function greet(clientName) {
+//    return console.log(`${clientName}, ласкаво просимо в «${this.service}».`);
+// }
+  
+// const steam = {
+//     service: "Steam",
+// };
+// const steamGreeter = greet.bind(steam);
+// steamGreeter("Манго"); // "Манго, ласкаво просимо в «Steam»."
+  
+// const gmail = {
+// service: "Gmail",
+// };
+// const gmailGreeter = greet.bind(gmail);
+// gmailGreeter("Полі"); // "Полі, ласкаво просимо в «Gmail»."
+  
